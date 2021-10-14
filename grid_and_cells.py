@@ -9,13 +9,13 @@ class Grid:
         self.scale = scale
         self.cols = int(height/scale)
         self.rows = int(width/scale)
-        self.grid_array = np.ndarray(shape=(self.size))
         self.size = (self.rows, self.cols)
+        self.grid_array = np.ndarray(shape=(self.size))
 
     def fill_the_grid(self):
         for i in range(self.rows):
             for j in range(self.cols):
-                self.grid_array[x][y] = random.choice([True, False])
+                self.grid_array[i][j] = random.randint(0,1)
 
     def count_cell_neighbours(self, i, j):
         total = 0
@@ -23,7 +23,7 @@ class Grid:
         for n in range(-1, 2):
             for m in range(-1, 2):
                 i_edge = (i+n+self.rows) % self.rows
-                j_edge = (j+m+self.columns) % self.columns
+                j_edge = (j+m+self.cols) % self.cols
                 total += self.grid_array[i_edge][j_edge]
     
         total -= self.grid_array[i][j]
@@ -47,6 +47,8 @@ class Grid:
                     next_grid_state[i][j] = 0
                 else:
                     next_grid_state[i][j] = current_state
+        
+        self.grid_array = next_grid_state
 
     def draw_grid(self, on_color, off_color, surface):
         for i in range(self.rows):

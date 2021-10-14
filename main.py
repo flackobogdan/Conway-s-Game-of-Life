@@ -16,15 +16,17 @@ if __name__=='__main__':
     pygame.init()
     surface = pygame.display.set_mode((width,height))
     clock = pygame.time.Clock()
-    fps = 30
+    fps = 15
 
     pause = False
     run = True
 
-    scaler = 50
+    scaler = 10
+    
     grid = grid_and_cells.Grid(width, height, scaler)
     grid.fill_the_grid()
-    pygame.display.update()
+    grid.draw_grid(white,black,surface)
+    # pygame.display.update()
 
     while run:
         clock.tick(fps)
@@ -38,7 +40,8 @@ if __name__=='__main__':
             if event.type == pygame.K_SPACE:
                 pause = not pause
         
-
+        grid.get_next_state()
+        grid.draw_grid(white,black,surface)
 
         pygame.display.update()
 
