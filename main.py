@@ -2,6 +2,7 @@ import pygame
 import random
 import numpy as np
 from pygame import display
+import grid_and_cells
 
 #defining some colors:
 black = (0,0,0)
@@ -20,7 +21,10 @@ if __name__=='__main__':
     pause = False
     run = True
 
-    
+    scaler = 50
+    grid = grid_and_cells.Grid(width, height, scaler)
+    grid.fill_the_grid()
+    pygame.display.update()
 
     while run:
         clock.tick(fps)

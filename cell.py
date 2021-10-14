@@ -1,4 +1,3 @@
-from itertools import count
 import numpy
 import random
 from grid import *
@@ -27,13 +26,13 @@ class Cell:
 
 
     def count_neighbours(self):
-        count = 0
+        ncount = 0
 
         for neighbour in self.neighbours:
             if neighbour.value == True :
-                count += 1
+                ncount += 1
 
-        return count
+        return ncount
 
     # 1. Any live cell with fewer than two live neighbours dies, as if by underpopulation.
     # 2. Any live cell with two or three live neighbours lives on to the next generation.
