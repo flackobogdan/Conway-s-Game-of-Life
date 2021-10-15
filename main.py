@@ -30,17 +30,19 @@ if __name__=='__main__':
 
     while run:
         clock.tick(fps)
-        surface.fill(black)
+
+        key_state = pygame.key.get_pressed()
+        
+        if key_state[pygame.K_ESCAPE]:    
+            run = False
+        if key_state[pygame.K_SPACE]:
+            pause = not pause
 
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 run = False
-            if event.type == pygame.K_ESCAPE:
-                run = False
-            if event.type == pygame.K_SPACE:
-                pause = not pause
-        
-        grid.get_next_state()
+
+        grid.get_next_state(pause)
         grid.draw_grid(white,black,surface)
 
         pygame.display.update()
